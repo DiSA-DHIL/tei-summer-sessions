@@ -15,6 +15,10 @@ summary {
 section {
   margin-bottom: 0;
 }
+
+hgroup p {
+  margin: 0;
+}
 blockquote > p:last-child {
   margin-bottom: 0;
 }
