@@ -1,0 +1,45 @@
+@import "@picocss/pico/css/pico.css";
+
+:root {
+  --font-size: 16px;
+}
+body {
+  --accordion-open-summary-color: var(--accordion-close-summary-color);
+  --typography-spacing-vertical: 1.5em;
+  --spacing: 1em;
+}
+summary {
+  display: flex;
+}
+
+section {
+  margin-bottom: 0;
+}
+blockquote > p:last-child {
+  margin-bottom: 0;
+}
+details summary:after {
+  float: none;
+  margin-left: auto;
+}
+time {
+  font-size: 0.8em;
+  color: var(--color-muted);
+  width: 14ch;
+}
+
+.links {
+  columns: 2;
+}
+
+li {
+  text-wrap: balance;
+  padding: 0 0.5em;
+}
+
+.citations > li {
+  margin-left: 1rem;
+  text-indent: -1rem;
+  text-wrap: pretty;
+  list-style-type: none;
+}

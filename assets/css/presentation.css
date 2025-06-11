@@ -1,0 +1,177 @@
+@import "reveal.js/dist/reveal.css";
+@import "reveal.js/dist/theme/black.css";
+@import "reveal.js/plugin/highlight/monokai.css";
+@import "@fontsource-variable/inter";
+
+@font-face {
+  font-family: "Oswald";
+  src: url("../fonts/Oswald/Oswald-VariableFont_wght.ttf")
+    format("truetype-variations");
+  font-weight: 1 999;
+}
+
+:root {
+  --main-font: "Inter Variable", Helvetica, sans-serif;
+  --r-heading-font: "Inter Variable", Helvetica, sans-serif;
+  --r-main-font-size: 38px;
+}
+
+.reveal {
+  font-family: var(--main-font);
+  font-weight: 300;
+}
+
+code,
+.codelike {
+  font-family: "Fira Code VF", monospace;
+}
+
+.highlight-line {
+  color: #efefef;
+}
+.highlight-line .hljs-section {
+  color: #a6e22e;
+}
+
+[data-background-iframe],
+[data-background-image]:has(> div) {
+  z-index: 9000;
+}
+[data-background-iframe] > div,
+[data-background-image] > div {
+  position: absolute;
+  width: 40%;
+  right: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 5px 25px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 20px;
+  font-size: 20px;
+  text-align: left;
+}
+
+[data-background-iframe][data-background-color] h2 {
+  color: var(--r-heading-color) !important;
+}
+[data-background-iframe] > div.hidden {
+  display: none;
+}
+
+.closer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.closer:hover {
+  opacity: 1;
+}
+
+.reveal img.svg {
+  margin: 0;
+}
+
+cite {
+  font-size: 14px;
+  margin-top: 1rem;
+  line-height: 1.2;
+  display: inline-block;
+}
+
+kbd {
+  font-size: 0.8em;
+  display: inline-block;
+  border: 1px dashed hsl(0, 0%, 8%);
+  padding: 3px;
+  background-color: hsl(0, 0%, 25%);
+}
+.reveal-viewport.blur .slide-background-content {
+  filter: blur(14px) !important;
+}
+
+p {
+  text-align: left;
+}
+
+.current-fragment .italic {
+  display: inline-block;
+  animation: italic 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.3s;
+}
+
+.underline {
+  display: inline-block;
+}
+.underline:after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 95%;
+  width: 0px;
+  height: 3px;
+  background: transparent;
+  transition: width 1s ease-in-out;
+}
+
+.visible .underline:after {
+  width: 100%;
+  background: white;
+}
+
+.current-fragment .bold {
+  animation: bold 1.5s;
+  animation-delay: 0.1s;
+  animation-timing-function: ease-in-out;
+  display: inline-block;
+}
+
+.current-fragment .yell {
+  display: inline-block;
+  animation: yell 1.25s;
+  animation-delay: 0.1s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes italic {
+  0% {
+    transform: skewX(0);
+  }
+
+  25% {
+    transform: skewX(-20deg);
+  }
+
+  100% {
+    transform: skewX(0);
+  }
+}
+
+@keyframes yell {
+  0% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bold {
+  0% {
+    font-weight: 500;
+  }
+
+  75% {
+    font-weight: 700;
+  }
+  100% {
+    font-weight: 550;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "workshops",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@picocss/pico": "^1.5.11",
+    "reveal.js": "^5.1.0",
+    "vite": "^6.0.7",
+    "@fontsource-variable/inter": "^5.1.1"
+  },
+  "dependencies": {}
+}
