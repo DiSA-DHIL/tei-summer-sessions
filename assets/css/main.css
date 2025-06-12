@@ -9,9 +9,24 @@ body {
   --typography-spacing-vertical: 1.5em;
   --spacing: 1em;
 }
+
+main {
+  --color: var(--h1-color);
+}
+
+details {
+  box-shadow: 0 1px 3px 0 rgba(36, 30, 30, 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  padding: 1em 1.5em;
+}
+
+details[open] > summary {
+  border-bottom: 3px solid #efefef;
+}
+
 summary {
   display: flex;
-  align-items: end;
+  align-items: center;
+  padding-bottom: 1rem;
 }
 
 summary > hgroup {
@@ -21,15 +36,23 @@ summary > hgroup {
   gap: 1em;
 }
 
-summary > hgroup > *:last-child {
-  --color: var(--h1-color);
+hgroup p {
   margin: 0;
 }
 
+summary > hgroup > *:last-child {
+  --color: var(--h1-color);
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
 summary .dateline {
+  --color: var(--color-muted);
   display: grid;
   justify-content: left;
   grid-row-gap: 0.2em;
+  font-size: 0.8em;
   & .date {
     font-weight: 600;
   }
@@ -50,19 +73,13 @@ section {
   margin-bottom: 0;
 }
 
-hgroup p {
-  margin: 0;
-}
 blockquote > p:last-child {
   margin-bottom: 0;
 }
+
 details summary:after {
   float: none;
   margin-left: auto;
-}
-.dateline {
-  font-size: 0.8em;
-  color: var(--color-muted);
 }
 
 .links {
