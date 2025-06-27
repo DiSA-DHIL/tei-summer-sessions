@@ -140,10 +140,16 @@ partly because of my love for you, partly because of your love for yoghurt
             </div>
        </section>
 
+       <section data-background-iframe="annotate.html?image=tempest-spread.png">
+
+       </section>
+
       <section>
         <h2>Activity: Working with the Hierarchy</h2>
         <p><a href="https://disa-dhil.github.io/tei-summer-sessions/">https://disa-dhil.github.io/tei-summer-sessions/</a></p>
       </section>
+
+      <section data-background-iframe="annotate.html"></section>
 
 
       <section>
@@ -180,9 +186,21 @@ partly because of my love for you, partly because of your love for yoghurt
             <li><kbd>del</kbd> = a deletion within the text</li>
             <li><kbd>subst</kbd> = a substitution (e.g. add + del)</li>
             <li><kbd>surplus</kbd> = unnecessary or additional text</li>
-            <li><kbd>supplied</kbd> = editorially supplied text</li>
-            <li><kbd>gap</kbd> = a gap in the text</li>
         </ul>
+      </section>
+
+              
+       <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subst.html"></section>
+
+      <section>
+        <ul class="fragmented">
+            <li>These can also be placed on the page (using <kbd>@place</kbd>)</li>
+            <li>They can also be identified as belonging to different hands (using <kbd>@hand</kbd>)</li>
+        </ul>
+      </section>
+
+      <section data-background-iframe="annotate.html">
+        
       </section>
 
       <section>
@@ -195,22 +213,13 @@ partly because of my love for you, partly because of your love for yoghurt
             </pre>
         </section>
 
-        <section>
-            <h2>Examples</h2>
-        </section>
 
-       <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subst.html"></section>
-
-      <section>
-        <h2>Additions, deletions, et cetera</h2>
-        <ul class="fragmented">
-            <li>What is the hierarchy of an addition or deletion?</li>
-            <li>Can be understood as another textual hierarchy or something that breaks the established hierarchy of text</li>
-        </ul>
-      </section>   
-      <section data-background-image="../assets/images/ropes.png" data-background-size="contain">
+   
+      
+      <section data-background-iframe="annotate.html?image=ropes.png">
 
       </section>
+
 
       <section>
         <pre>
@@ -225,21 +234,71 @@ partly because of my love for you, partly because of your love for yoghurt
                         </subst>
                     </ab>
                 </sp>
-                <sp>
-                    <speaker>Jen</speaker>
-                    <ab>
-                        <subst>
-                            <del>Can I?</del>
-                            <add>Who?</add>
-                        </subst>
-                    </ab>
-                </sp>
-                <addSpan spanTo="#spEnd"/>
-                <sp>
-                    <speaker>Paul</speaker>
-                    <ab>You know darn well — (means himself)</ab>
-                </sp>
-                <anchor xml:id="spEnd"/>
+            </code>
+        </pre>
+      </section>
+      
+      <section data-background-iframe="annotate.html?image=ropes.png">
+
+      </section>
+
+      <section>
+        <h2>Additions, deletions, et cetera</h2>
+        <ul class="fragmented">
+            <li>What is the hierarchy of an addition or deletion?</li>
+            <li>Can be understood as another textual hierarchy or something that breaks the established hierarchy of text</li>
+        </ul>
+      </section>   
+
+      <section>
+        <pre>
+            <code class="language-xml" data-line-numbers data-trim>
+                &lt;sp&gt;
+                    &lt;speaker&gt;Jen&lt;/speaker&gt;
+                    &lt;ab&gt;
+                        &lt;subst&gt;
+                            &lt;del&gt;Can I?&lt;/del&gt;
+                            &lt;add&gt;Who?&lt;/add&gt;
+                        &lt;/subst&gt;
+                    &lt;/ab&gt;
+                &lt;/sp&gt;
+                &lt;addSpan spanTo=&quot;#spEnd&quot;/&gt;
+                &lt;sp&gt;
+                    &lt;speaker&gt;Paul&lt;/speaker&gt;
+                    &lt;ab&gt;You know darn well — (means himself)&lt;/ab&gt;
+                &lt;/sp&gt;
+                &lt;anchor xml:id=&quot;spEnd&quot;/&gt;
+            </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Editorial Interventions</h2>
+        <ul class="fragmented">
+            <li><kbd>supplied</kbd> = text supplied for editorial reasons</li>
+            <li><kbd>gap</kbd> = text omitted for editorial reasons</li>
+            <li><kbd>note</kbd> = Usually, an editorial note (but not always)</li>
+        </ul>
+      </section>
+
+      <section data-background-iframe="annotate.html?image=poor-devil.jpg">
+      </section>
+
+      <section>
+        <pre>
+            <code class="language-xml" data-line-numbers data-trim>
+&lt;p&gt;How&lt;gap reason=&quot;damaged&quot;/&gt;
+I hated him for his wealth,
+&lt;gap reason=&quot;damage&quot;/&gt;
+ess, his good breeding, his pitying con
+&lt;gap reason=&quot;damaged&quot;/&gt;
+me. I wanted to be rich myself, but I h
+&lt;supplied cert=&quot;high&quot; resp=&quot;pers:SL1&quot;&gt;a&lt;/supplied&gt;
+ted, I detested, all who had wealth, for they seemed to mock me. He was the man who had brought us to poverty, who had sold my father up, beggared him, killed him. And yet he dared to pity me. He was the proprietor of a large manufactory, a man who paid poor girls to work for him from 75 cents to $1 a week, and yet was a pillar of his church, an M. P., an Honorable, in fact, my employer’s best client. One day he came to me and offered to help me, to give me his old clothes. I refused quietly at first but when he had left me I went nearly mad. To be offered old clothes! Had it come to this to be offered charity by mine enemy? Great God! W
+&lt;gap reason=&quot;illegible&quot;/&gt;
+so wretched
+&lt;gap reason=&quot;damaged&quot;/&gt;
+&lt;/p&gt;
             </code>
         </pre>
       </section>
@@ -265,7 +324,24 @@ partly because of my love for you, partly because of your love for yoghurt
       </section>
 
       <section>
-        <h2>Questions?</h2>
+        <h2>Recap</h2>
+        <ul class="fragmented">
+            <li>TEI is based on a hierarchical understanding of text; requires choosing a dominant hierarchy for your analysis (but there are mechanisms to get around it)</li>
+            <li>Allows for nuanced and fine-grained specification of additions, deletions, substitutions, including revision campaigns</li>
+            <li>Allows for nuanced and fine-grained specification of editorial interventions (gap, supplied, choice, and editorial notes)</li>
+            <li>Uncertainty and responsibility can be specified on all elements (in situ)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Further Exploration</h2>
+        <ul class="fragmented">
+
+            <li>Multiple witnesses and collations (<kbd>app</kbd>, <kbd>lem</kbd>, <kbd>rdg</kbd>)</li>
+            <li>Multiple versions / genetic editions</li>
+            <li>See <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/TC.html">Ch. 13 Critical Apparatus</a></li>
+            <li>See also the <a href="https://whitmanarchive.org/">Walt Whitman Archive</a></li>
+        </ul>
       </section>
 
       <section>

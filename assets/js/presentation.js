@@ -28,7 +28,15 @@ document.querySelectorAll(":is(ol,ul):is(.fragmented)").forEach((list) => {
 });
 
 document.querySelectorAll("aside").forEach((aside) => {
-  aside.setAttribute("data-markdown", "true");
+  if (!aside.hasAttribute("data-markdown")) {
+    aside.setAttribute("data-markdown", "true");
+  }
+});
+
+document.querySelectorAll("*[data-background-image]").forEach((div) => {
+  if (!div.hasAttribute("data-background-size")) {
+    div.setAttribute("data-background-size", "contain");
+  }
 });
 
 let deck = new Reveal({
