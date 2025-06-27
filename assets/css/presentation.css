@@ -50,6 +50,12 @@ code,
   text-align: left;
 }
 
+.title-slide[data-background-image] > div {
+  width: 90%;
+  transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+}
 [data-background-iframe][data-background-color] h2 {
   color: var(--r-heading-color) !important;
 }
