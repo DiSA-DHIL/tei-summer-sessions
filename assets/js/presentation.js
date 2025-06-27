@@ -1,6 +1,7 @@
 import Reveal from "reveal.js";
-import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+import RevealMarkdown from "reveal.js/plugin/markdown/markdown.esm.js";
 import Highlight from "reveal.js/plugin/highlight/highlight.esm.js";
+import RevealNotes from "reveal.js/plugin/notes/notes.esm.js";
 
 let infoDivs = document.querySelectorAll(
   "section[data-background-iframe] > div"
@@ -26,8 +27,12 @@ document.querySelectorAll(":is(ol,ul):is(.fragmented)").forEach((list) => {
   });
 });
 
+document.querySelectorAll("aside").forEach((aside) => {
+  aside.setAttribute("data-markdown", "true");
+});
+
 let deck = new Reveal({
-  plugins: [Highlight],
+  plugins: [Highlight, RevealNotes, RevealMarkdown],
 });
 
 deck.initialize({

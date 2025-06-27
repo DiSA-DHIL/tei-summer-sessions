@@ -82,10 +82,6 @@ details summary:after {
   margin-left: auto;
 }
 
-.links {
-  columns: 2;
-}
-
 li {
   text-wrap: balance;
   padding: 0 0.5em;

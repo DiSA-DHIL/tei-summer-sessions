@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TEI Summer Sessions</title>
+    <meta charset="utf-8"/>
+    <link href="../assets/css/presentation.css" rel="stylesheet"/>
+    <script src="../assets/js/presentation.js" type="module"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="title-slide slide" data-background-image="../assets/images/TEI_Logo.png" data-background-opacity="0.8" data-background-size="15%" data-background-position="bottom left">
+            <h2 class="maintitle">Critical Editing and Interpretation in TEI</h3>
+            <hr/>
+            <p style="text-align:center; font-size:70%">Joey Takeda</p>
+            <p style="text-align:center; font-size:70%">Digital Humanities Innovation Lab, Simon Fraser University</p>
+            <p style="text-align:center; font-size:70%">Digital Scholarship in the Arts (DiSA)</p>
+        </section>
+
+
+      <section>
+        <h3>Today</h3>
+        <ol>
+            <li>10:00-11:45: Presentation and Workshop</li>
+            <li>11:45-12:15: Lunch</li>
+            <li>12:15-2:00: Community of Practice: Co-working, discussion, etc</li>
+        </ol>
+      </section>  
+      
+
+      <section>
+        <h3>Before we begin...</h3>
+        <ul class="fragmented">
+            <li>This is not going to be an introduction to TEI</li>
+            <li>But completely OK if you aren't familiar!</li>
+            <li>Main point is to understand the affordances of the TEI and how individuals (and projects) can intervene</li>
+            <li>But also: please feel free to interrupt, ask questions, etc</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Today</h3>
+        <ol class="fragmented">
+            <li>Text Hierarchy and the TEI</li>
+            <li>What TEI enables
+                <ul>
+                    <li>Authorial and Editorial Interventions</li>
+                    <li>Certainty and Responsibility</li>
+                </ul>
+            </li>
+        </ol>
+      </section>
+
+      <section data-auto-animate>
+            <h3>The TEI</h3>
+            <p class="fragment">A set of shared, community-developed guidelines for encoding text</p>
+            <p class="fragment">Started in the 1990s (preceding HTML)</p>
+            <p class="fragment">Used by many projects across the world in many different languages and for many different reasons</p>
+            <p class="fragment">Website: https://tei-c.org/</p>
+        </section>
+
+      <section>
+        <h3>TEI and the "Hierarchy"</h3>
+        <ul>
+            <li>Text = "Ordered Hierarchy of Content Objects" [OHCO] (De Rose et al., 1990)</li>
+        </ul>
+    </section>
+
+  <section data-auto-animate>
+            <pre data-id="frank">
+                <code data-trim class="language-text">
+  Having a Coke With You
+  
+is even more fun than going to San Sebastian, Irún, Hendaye, Biarritz,
+or being sick to my stomach on the Travesera de Gracia in Barcelona
+partly because in your orange shirt you look like a better happier St. Sebastian
+partly because of my love for you, partly because of your love for yoghurt
+                </code>
+            </pre>
+        </section>
+        <section data-auto-animate>
+            <pre data-id="frank">
+                <code data-trim class="language-xml">
+&lt;div&gt;
+  &lt;head&gt;Having a Coke With You&lt;/head&gt;
+  
+    is even more fun than going to San Sebastian, Irún, Hendaye, Biarritz,
+    or being sick to my stomach on the Travesera de Gracia in Barcelona
+    partly because in your orange shirt you look like a better happier St. Sebastian
+    partly because of my love for you, partly because of your love for yoghurt
+  
+&lt;/div&gt;
+                </code>
+            </pre>
+        </section>
+
+        <section data-auto-animate>
+            <pre data-id="frank">
+                <code data-trim class="language-xml">    
+&lt;div&gt;
+  &lt;head&gt;Having a Coke With You&lt;/head&gt;
+  &lt;lg&gt;
+    &lt;l&gt;is even more fun than going to San Sebastian, Irún, Hendaye, Biarritz,&lt;/l&gt;
+    &lt;l&gt;or being sick to my stomach on the Travesera de Gracia in Barcelona&lt;/l&gt;
+    &lt;l&gt;partly because in your orange shirt you look like a better happier St. Sebastian&lt;/l&gt;
+    &lt;l&gt;partly because of my love for you, partly because of your love for yoghurt&lt;/l&gt;
+  &lt;/lg&gt;
+&lt;/div&gt;
+</code>
+            </pre>
+        </section>
+
+        <section data-auto-animate>
+            <pre data-id="sneer-not">
+                <code data-line-numbers="27-40">
+ &lt;div&gt;
+  &lt;head&gt;Having a Coke With You&lt;/head&gt;
+  &lt;lg&gt;
+    &lt;l&gt;is even more fun than going to &lt;placeName&gt;San Sebastian&lt;/placeName&gt;, &lt;placeName&gt;Irún&lt;/placeName&gt;, Hendaye, Biarritz,&lt;/l&gt;
+    &lt;l&gt;or being sick to my stomach on the &lt;placeName&gt;Travesera de Gracia&lt;/placeName&gt; in Barcelona&lt;/l&gt;
+    &lt;l&gt;partly because in your orange shirt you look like a better happier &lt;persName&gt;St. Sebastian&lt;/persName&gt;&lt;/l&gt;
+    &lt;l&gt;partly because of my love for you, partly because of your love for yoghurt&lt;/l&gt;
+  &lt;/lg&gt;
+&lt;/div&gt;
+                </code>
+            </pre>
+        </section>
+
+      <section>
+        <h3>But this can get tricky...</h3>
+      </section>
+
+      <section>
+            <div class="r-stack">
+                <img class="fragment" src="../assets/images/letter-closer-diagram.png"/>
+                <img class="fragment" src="../assets/images/letter-closer-diagram_p1.png"/>
+                <img class="fragment" src="../assets/images/letter-closer-diagram_p2.png"/>
+                <img class="fragment" src="../assets/images/letter-closer-diagram_p3.png"/>
+                <img class="fragment" src="../assets/images/letter-closer-diagram_p4.png"/>
+            </div>
+       </section>
+
+      <section>
+        <h2>Activity: Working with the Hierarchy</h2>
+        <p><a href="https://disa-dhil.github.io/tei-summer-sessions/">https://disa-dhil.github.io/tei-summer-sessions/</a></p>
+      </section>
+
+
+      <section>
+        <h2>Discussion</h2>
+      </section>
+
+      <section>
+        <h2>What are some ways this could be encoded?</h2>
+        <ul class="fragmented">
+            <li>As a list?</li>
+            <li>As a table?</li>
+            <li>As a sequence of events?</li>
+            <li>As a set of blocks?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Reading the TEI Guidelines</h2>
+      </section>
+
+      <section data-background-iframe="https://tei-c.org"></section>
+
+      <section>
+        <h2>Authorial Interventions</h2>
+        <ul class="fragmented">
+            <li>Structured text = in-situ encoding; in-situ interventions</li>
+            <li>Denoting additions, deletions, substitutions, and multiple hands</li>
+        </ul>
+      </section>
+
+      <section>
+        <ul class="fragmented">
+            <li><kbd>add</kbd> = an addition to the text</li>
+            <li><kbd>del</kbd> = a deletion within the text</li>
+            <li><kbd>subst</kbd> = a substitution (e.g. add + del)</li>
+            <li><kbd>surplus</kbd> = unnecessary or additional text</li>
+            <li><kbd>supplied</kbd> = editorially supplied text</li>
+            <li><kbd>gap</kbd> = a gap in the text</li>
+        </ul>
+      </section>
+
+      <section>
+            <pre>
+                <code data-trim class="language-xml">    
+&lt;item&gt;
+  &lt;label&gt;&lt;del&gt;163&lt;/del&gt;1630&lt;/label&gt;
+&lt;/item&gt;
+</code>
+            </pre>
+        </section>
+
+       <section>
+         <h2>Additions, deletions, et cetera</h2>
+         <ul class="fragmented">
+            <li>Deletion + addition = substitution</li>
+            <li>This is the <kbd>subst</kbd> tag</li>
+         </ul>
+       </section> 
+
+       <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subst.html"></section>
+
+      <section>
+        <h2>Additions, deletions, et cetera</h2>
+        <ul class="fragmented">
+            <li>What is the hierarchy of an addition or deletion?</li>
+            <li>Can be understood as another textual hierarchy or something that breaks the established hierarchy of text</li>
+        </ul>
+      </section>   
+      <section data-background-image="../assets/images/ropes.png" data-background-size="contain">
+
+      </section>
+
+      <section>
+        <pre>
+            <code class="language-xml" data-line-numbers data-trim>
+                <sp>
+                    <speaker>Paul</speaker>
+                    <stage>(Falling)</stage>
+                    <ab>
+                        <subst>
+                            <add place="margin left">You have too!</add>
+                            <del>You <emph>can</emph> have one if you want.</del>
+                        </subst>
+                    </ab>
+                </sp>
+                <sp>
+                    <speaker>Jen</speaker>
+                    <ab>
+                        <subst>
+                            <del>Can I?</del>
+                            <add>Who?</add>
+                        </subst>
+                    </ab>
+                </sp>
+                <addSpan spanTo="#spEnd"/>
+                <sp>
+                    <speaker>Paul</speaker>
+                    <ab>You know darn well — (means himself)</ab>
+                </sp>
+                <anchor xml:id="spEnd"/>
+            </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Responsibility and Certainty</h2>
+        <ul>
+            <li>TEI also allows you to encode responsibility and certainty</li>
+            <li>E.g. if you want to denote that a particular editor was responsible for a particular intervention</li>
+        </ul>
+      </section>
+
+      <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-att.global.responsibility.html">
+      </section>
+
+      <section>
+        <h2>Use cases for responsibility and certainty</h2>
+        <ul class="fragmented">
+            <li>Multiple editorial notes from multiple editors</li>
+            <li>Certainty of supplied text</li>
+        </ul>
+      </section>
+
+
+<!-- 
+
+        <section>
+            <h3>TEI</h3>
+                <p class="fragment">Note that the TEI is huge (586 elements)</p>
+                <p class="fragment">No one uses the entirety of the TEI tagset</p>
+                <p class="fragment">Individual projects customize the TEI for their own needs, usually using a small subset of the overall tagset</p>
+                <p class="fragment">E.g. Drama projects will use the drama tagset (&lt;sp&gt; for speech, &lt;speaker&gt; for speaker, et cetera) and discard the linguistic/dictionary tagset (&lt;entry&gt; for dictionary entries, &lt;m&gt; for morpheme, etc).</p>
+        </section>
+        
+        <section>
+            <h3>The Guidelines: Some Examples</h3>
+        </section>
+        
+        
+        <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html">
+            
+        </section>
+        
+        <section data-background-iframe="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gap.html">
+            
+        </section> -->
+
+        
+  
+        
+<!--         
+        <section>
+                <img class="r-stretch" src="../assets/images/tweet.png">
+                <cite>@ShitPlanning</cite>
+        </section>
+
+        <section data-background-iframe="https://roma.tei-c.org/" data-background-color="white">
+            <div>
+                <h2>Roma: Create your own TEI subset</h2>
+                <p><a href="https://roma.tei-c.org/">https://roma.tei-c.org/</a></p>
+            </div>
+        </section>
+
+        
+        <section>
+            <h3>Okay, I'm convinced...where do I start?</h3>
+        </section>
+
+        <section>
+            <h3>TEI Editors</h3>
+            <p>Since TEI is XML, you don't need special software to start encoding...</p>
+            <p>But there are some tools that can make it easier</p>
+        </section>
+
+        <section data-background-image="../assets/images/oxygen.png" data-background-size="cover">
+            <div>
+                <h2>oXygen XML Editor</h2>
+                <p><a href="https://www.oxygenxml.com/">https://www.oxygenxml.com/</a></p>
+            </div>
+        </section>
+
+        <section data-background-image="../assets/images/vscode.png" data-background-size="cover">
+            <div>
+                <h2>VSCode + Scholarly XML Extension</h2>
+                <p><a href="https://marketplace.visualstudio.com/items?itemName=raffazizzi.sxml">https://marketplace.visualstudio.com/items?itemName=raffazizzi.sxml</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h3>WYSIWYG</h3>
+            <p>Or, WYSIWYE (What you see is what you encode)</p>
+        </section>
+
+        <section data-background-image="../assets/images/teipublisher.png" data-background-size="cover">
+            <div>
+                <h2>TEI Publisher</h2>
+                <p><a href="https://teipublisher.com/exist/apps/tei-publisher-home/index.html">https://teipublisher.com/exist/apps/tei-publisher-home/index.html</a></p>
+            </div>
+        </section>
+
+        <section data-background-image="../assets/images/leafwriter.png" data-background-size="cover">
+            <div>
+                <h2>LEAF-Writer</h2>
+                <p><a href="https://leaf-writer.leaf-vre.org/">https://leaf-writer.leaf-vre.org/</a></p>
+            </div>
+        </section> -->
+        <!--Not available-->
+<!--         
+        <section data-background-iframe="//localhost:3000/leafwriter/dist/">
+        </section> -->
+      
+<!-- 
+        <section>
+            <h3>My stuff is encoded...what can I do with it?</h3>
+        </section>
+
+            <section data-background-iframe="https://teigarage.tei-c.org/">
+                <div>
+                    <h2>TEI Garage</h2>
+                    <p><a href="https://teigarage.tei-c.org/">https://teigarage.tei-c.org/</a></p>
+                </div>
+            </section>
+
+            <section data-background-image="../assets/images/oxgargeout.png" data-background-size="contain">
+
+            </section>
+
+
+            <section data-background-iframe="https://teic.github.io/CETEIcean/" data-background-color="white">
+                <div>
+                    <h2>CETEIcean 🐳</h2>
+                    <p><a href="https://github.com/TEIC/CETEIcean">https://github.com/TEIC/CETEIcean</a></p>
+                </div>
+            </section>
+
+        <section>
+            <h3>I want to learn more!</h3>
+        </section>
+        
+        <section data-background-image="../assets/images/dhsi.png" data-background-size="contain">
+            <div>
+                <h2>DHSI: Text Encoding Fundamentals and their Application (June 3–7, 2024)</h2>
+                <p><a href="https://dhsi.org/on-campus-courses2024/">https://dhsi.org/on-campus-courses2024/</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h3>Learning more about the TEI</h3>
+            <p>The TEI Guidelines: <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html">https://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html</a></p>
+            <p>TEI By Example: <a href="https://teibyexample.org/">https://teibyexample.org/</a></p>
+            <p>TEI GitHub: <a href="https://github.com/TEIC/TEI">https://github.com/TEIC/TEI</a></p>
+            <p>TEI listServ: <a href="https://listserv.brown.edu/cgi-bin/wa?A0=TEI-L">https://listserv.brown.edu/cgi-bin/wa?A0=TEI-L</a></p>
+        </section> -->
+        
+
+        <!-- <section data-auto-animate>
+            <pre data-id="closer"><code data-line-numbers data-trim>
+                <closer>
+                    <salute>Thanks for listening!</salute>
+                    <signed>Any questions?</signed>
+                </closer>
+                </code></pre>
+        </section>
+        <section data-auto-animate>
+            <pre data-id="closer"><code data-line-numbers data-trim>
+                    <closer>
+                        <salute>Thanks for listening!</salute>
+                        <signed>Any questions?</signed>
+                        <address>
+                            <email>takeda@sfu.ca</email>  
+                        </address>
+                    </closer>
+                </code></pre>
+        </section>  
+
+        <section>
+            <pre>
+                <code class="language-xml" data-line-numbers data-trim>
+                    <back>
+                        <list type="acknowledgements">
+                            <item>Digital Research Alliance of Canada
+                                 (Meghan Landry, Megan Meredith-Lobay,
+                                  and Pier-Luc St-Onge)</item>
+                            <item>Simon Fraser University Library</item>
+                            <item>TEI Technical Council and the Women Writer's Project</item>
+                        </list>
+                    </back>
+                </code>
+            </pre>
+        </section> -->
+                    <!--    <listBibl type="references">
+                            <bibl>Landscapes of Injustice Archive</bibl>
+                            <bibl>The Yellow Nineties 2.0</bibl>
+                            <bibl>The Winnifred Eaton Archive</bibl>
+                            <bibl></bibl>
+                        </listBibl>-->
+    </div>
+</div>
+    
+</body>
+</html>
