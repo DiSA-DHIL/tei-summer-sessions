@@ -17,8 +17,6 @@ const workshops = dirents
     });
     return {
       dir: name,
-      label,
-      date,
     };
   })
   .sort((d1, d2) => {
@@ -38,6 +36,12 @@ const input = {
 workshops.forEach(({ dir }) => {
   input[dir] = resolve(__dirname, dir, "index.html");
 });
+
+input["2025-06-26_annotate"] = resolve(
+  __dirname,
+  "2025-06-26",
+  "annotate.html"
+);
 
 export default defineConfig({
   plugins: [
