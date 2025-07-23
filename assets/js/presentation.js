@@ -39,11 +39,23 @@ document.querySelectorAll("*[data-background-image]").forEach((div) => {
   }
 });
 
-let deck = new Reveal({
-  plugins: [Highlight, RevealNotes, RevealMarkdown],
-});
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("code.language-xml > script").forEach((script) => {
+    const content = script.textContent;
+    const escaped = content
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    const parent = script.parentElement;
+    parent.removeChild(script);
+    parent.innerHTML = escaped;
+  });
+  let deck = new Reveal({
+    plugins: [Highlight, RevealNotes, RevealMarkdown],
+  });
 
-deck.initialize({
-  hash: true,
-  maxScale: 1.5,
+  deck.initialize({
+    hash: true,
+    maxScale: 1.5,
+  });
 });

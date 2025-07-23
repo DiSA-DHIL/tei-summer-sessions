@@ -1,117 +1,641 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <title>TEI Summer Sessions</title>
-    <meta charset="utf-8"/>
-    <link href="../assets/css/presentation.css" rel="stylesheet"/>
+    <meta charset="utf-8" />
+    <link href="../assets/css/presentation.css" rel="stylesheet" />
     <script src="../assets/js/presentation.js" type="module"></script>
-</head>
-<body>
-<div class="reveal">
-    <div class="slides">
-        <section class="title-slide slide" data-background-image="../assets/images/TEI_Summer_Sessions.png" data-background-size="contain">
-            <div>
-              <h2 class="maintitle">Encoding Entities: People, Organizations, Time, and Place</h2>
-            <p style="text-align:center; font-size:70%">Joey Takeda</p>
-            <p style="text-align:center; font-size:70%">Digital Humanities Innovation Lab, SFU  | Digital Scholarship in the Arts (DiSA), UBC</p>
-               <p style="text-align:center; font-size:70%">July 23, 2025</p>
-            </div>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          class="title-slide slide"
+          data-background-image="../assets/images/TEI_Summer_Sessions.png"
+          data-background-size="contain"
+        >
+          <div>
+            <h2 class="maintitle">
+              Encoding Entities: People, Organizations, Time, and Place
+            </h2>
+            <p style="text-align: center; font-size: 70%">Joey Takeda</p>
+            <p style="text-align: center; font-size: 70%">
+              Digital Humanities Innovation Lab, SFU | Digital Scholarship in
+              the Arts (DiSA), UBC
+            </p>
+            <p style="text-align: center; font-size: 70%">July 23, 2025</p>
+          </div>
         </section>
 
-
-      <section>
-        <h3>Today</h3>
-        <ol>
+        <section>
+          <h3>Today</h3>
+          <p><a href="https://disa-dhil.github.io/tei-summer-sessions/"></a></p>
+          <ol>
             <li>10:00-12:00: Presentation and Workshop</li>
             <li>12:00-12:30: Lunch</li>
             <li>12:30-1:15: Case Study: Lyon in Mourning</li>
             <li>1:15-2:00: Open Discussion</li>
-        </ol>
-      </section>  
-    
-      <section>
-        <h3>Before we begin...</h3>
-        <ul class="fragmented">
+          </ol>
+        </section>
+
+        <section>
+          <h3>Before we begin...</h3>
+          <ul class="fragmented">
             <li>This is not going to be an introduction to TEI</li>
             <li>But completely OK if you aren't familiar!</li>
-            <li>Main point is to understand the affordances of TEI for encoding "entities" (people, places, organizations)</li>
+            <li>
+              Main point is to understand the affordances of TEI for encoding
+              "entities" (people, places, organizations)
+            </li>
             <li>But also: please feel free to interrupt, ask questions, etc</li>
-        </ul>
-      </section>
+          </ul>
+        </section>
 
-      <section>
-        <h3>Today</h3>
-        <ol class="fragmented">
-            <li>What is an Entity?</li>
-            <li>TEI as a Database for Entities</li>
-            <li>Basic Principles</li>
+        <section>
+          <h3>Today</h3>
+          <ol class="fragmented">
+            <li>Basic Principles of Entities (People, Places)</li>
             <li>Introduction to the person element</li>
             <li>Finding Information about People</li>
             <li>Introduction to the place element</li>
             <li>Locating places: Demo (Vertexer)</li>
-        </ol>
-      </section>
+          </ol>
+        </section>
+
+        <section>
+          <h3>What is an entity?</h3>
+          <ul class="fragmented">
+            <li>Entities refer to a specific thing in the world</li>
+            <li>E.g. proper nouns: people, places, books, events, organizations</li>
+            <li>Often described in terms of "named" entities (e.g. things with a name), but there are
+                cases where this become a bit tricky (as we'll talk about later)</li>
+          </ul>
+        </section>
+        <section>
+            <h3>Encoding Entities: Two Parts</h3>
+            <ul class="fragmented">
+               <li>Definition: The authority/canonical record</li> 
+               <li>Where you define information about the entity</li>
+               <li>This is usually defined externally -- e.g. in a separate file or as a "standoff" entity</li>
+            </ul>
+        </section>
+        <section>
+          <pre>
+          <code class="language-xml" data-line-numbers="|1|2-5|6-7" data-trim>
+            <script type="text/template">
+                <person xml:id="VW1">
+                    <persName>
+                        <forename>Virginia</forename>
+                        <surname>Woolf</surname>
+                    </persName>
+                    <birth when="1882-01-25"/>
+                    <death when="1941-03-28"/>
+                    <!--Other information....-->    
+                </person>
+            </script>
+          </code>
+        </pre>
+        </section>
+
+ 
+
+        <section>
+          <h3>Anatomy of an *Ography</h3>
+          <ul class="fragmented">
+            <li>Databases of entities are often known as "standoff" in TEI. Usually these are kept
+                in separate files: e.g. a bibliography, an orgography, a placeography (aka a geography?)
+            </li>
+            <li>
+              Contained by a <code>list*</code> element (e.g.
+              <code>listBibl</code>, <code>listPerson</code>)
+            </li>
+            <li>Each entity has a unique <code>@xml:id</code> to identify it canonically</li>
+          </ul>
+        </section>
+
+        <section>
+            <pre>
+                <code class="language-xml" data-line-numbers="|1|2-25|16|18|19-32" data-trim>
+                    <script type="text/template">
+<TEI>
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>Personography</title>
+   </titleStmt>
+   <publicationStmt>
+    <p><!--...--></p>
+   </publicationStmt>
+   <sourceDesc>
+    <p>No source: this is an original work.</p>
+   </sourceDesc>
+  </fileDesc>
+  <!--...More information here...-->
+ </teiHeader>
+ <text>
+  <body>
+   <listPerson>
+    <person xml:id="WORD2">
+     <persName>
+      <surname>Wordsworth</surname>
+      <forename>Dorothy</forename>
+     </persName>
+     <birth when="1771"/>
+     <death when="1855"/>
+     <note>
+      <p><!--Biographical annotation goes here--></p>
+     </note>
+     <linkGrp>
+      <ptr target="http://viaf.org/viaf/19695644/"/>
+     </linkGrp>
+    </person>
+   </listPerson>
+  </body>
+ </text>
+</TEI>
+                    </script>
+
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Encoding Entities: Two Parts</h3>
+            <ul class="fragmented">
+                <li>Reference: This is where you mention the person or place in your text in some way and link to the definition</li>
+            </ul>
+        </section>
+
+        <section>
+            <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+                <p><persName ref="#VW1">Virginia Woolf</persName> was
+                     a key member of the Bloomsbury Group</p>
+            </script>
+            </code>
+            </pre>
+        </section>
+
+      <section data-background-image="../assets/images/Stow.jpg" data-background-size="contain">
+        </section>
+
+        <section>
+                        <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+<TEI>
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>Recollection of a Tour Made in Scotland</title>
+    <author ref="#WOOD2">Dorothy Wordsworth</author>
+   </titleStmt>
+  </fileDesc>
+  <!--...More information here...-->
+ </teiHeader>
+ <text>
+     <!--...-->
+ </text>
+</TEI>
+            </script>
+            </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Tagging Entities</h3>
+            <ul class="fragmented">
+                <li>You can also tag using the canonical reference to an external source</li>
+           
+        </section>
+
+        <section>
+             <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+                <p><persName ref="https://en.wikipedia.org/wiki/Virginia_Woolf">Virginia Woolf</persName> was
+                     a key member of the Bloomsbury Group</p>
+            </script>
+            </code>
+            </pre>
+        </section>
+
+        <section>
+          <h3>Where to Find Data: VIAF</h3>
+          <ul class="fragmented">
+            <li>VIAF: The Virtual International Authority File</li>
+            <li>
+              Linked data service that uses openly available linked data
+              (library catalogues, Wikidata, etc) to create a combined authority
+              record
+            </li>
+            <li><a href="https://viaf.org/en">https://viaf.org/en</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Other Resources</h3>
+          <ul class="fragmented">
+            <li>WikiData</li>
+            <li>Trove: https://trove.nla.gov.au/people/1247624</li>
+            <li>
+              WorldCat:
+              https://id.oclc.org/worldcat/entity/E39PBJq6WD9qK476jfWk4qhvHC
+            </li>
+            <li>++++ many more "identifiers"</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Wait, so Why Create Entities?</h3>
+          <ul class="fragmented">
+            <li>
+              Why create records for people, places, bibliographies if there are already so many resources available
+              about them?
+            </li>
+            <li>
+              Aren't we just writing the same stuff again and again and again?
+            </li>
+          </ul>
+        </section>
 
       <section>
-        <h3>What is an entity?</h3>
-        <blockquote>
-            <p></p>
-        </blockquote>
+            <h3>Why Create Entities?</h3>
+            <ul class="fragmented">
+                <li>Not all people are in an existing database and not all databases are correct</li>
+                <li>Individual projects will often want to have more precise definitions of the person -- e.g. local definitions for use within the project</li>
+                <li>Provide more in-depth encoding for project specific needs</li>
+                <li></li>
+            </ul>
+        </section>
 
-      </section>
 
-      <section>
-        <h3>TEI as Database for Entities</h3>
-      </section>
+       <section>
+          <h3>Basic Components of an Entity</h3>
+          <ul class="fragmented">
+            <li>characteristics or traits which do not, by and large, change over
+              time</li>
+            <li>characteristics or states which hold true only at a specific time
+            </li>
+            <li>
+              events or incidents which may lead to a change of state or, less
+              frequently, trait,
+            </li>
+            <li>
+              external resources where other information on the subject can be
+              found.
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h3>Basic Components of an Entity</h3>
-        <ul class="fragmented">
-<li>characteristics or traits which do not, by and large, change over time</li>
-<li>characteristics or states which hold true only at a specific time</li>
-<li>events or incidents which may lead to a change of state or, less frequently, trait,</li>
-<li>external resources where other information on the subject can be found.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>States</h3>
-        <ul class="fragmented">
-            <li>Names</li>
-            <li>Residence</li>
-            <li>Occupation</li>
-            <li>Gender</li>
-            <li>Nationality</li>
-            <li>Socioeconomic Status</li>
-            <li>+++</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Traits</h3>
-        <ul class="fragmented">
-
-        </ul>
-      </section>
-
-      <section>
-        <h3>States vs Traits</h3>
-        <ul class="fragmented">
+          <section>
+          <h3>States vs Traits</h3>
+          <ul class="fragmented">
             <li>Very few things are traits!</li>
-            <li></li>
-        </ul>
-      </section>
+            <li>
+              And in most cases, you don't have to decide whether something is a
+              state or a trait
+            </li>
+            <li>Many specific elements within an entity</li>
+          </ul>
+        </section>
+
+        <section>
+            <h3>People: Names</h3>
+            <ul class="fragment r-fit-text">
+<li>persName (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc.</li>
+<li>surname (surname) contains a family (inherited) name, as opposed to a given, baptismal, or nick name.</li>
+<li>forename (forename) contains a forename, given or baptismal name.</li>
+<li>roleName (role name) contains a name component which indicates that the referent has a particular role or position in society, such as an official title or rank.</li>
+<li>addName (additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal name.</li>
+<li>nameLink (name link) contains a connecting phrase or link used within a name but not regarded as part of it, such as van der or of.</li>
+<li>genName (generational name component) contains a name component used to distinguish otherwise similar names on the basis of the relative ages or generations of the persons named.</li>
+                </ul>
+        </section>
+
+        <section>
+             <pre>
+                   <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+  <persName>
+    <forename>Franklin</forename>
+    <forename>Delano</forename>
+    <surname>Roosevelt</surname>
+   </persName>
+        </script>
+    </code>
+    </pre>
+              
+        </section>
+        
+        <section>
+            <h3>People: States in Time</h3>
+            <ul class="fragmented">
+                <li>States can use a set of date attributes to locate them in time</li>
+                <li>@when: The precise date</li>
+                <li>@to and @from: A date range</li>
+                <li>@notBefore and @notAfter: A date range with fuzzy boundaries</li>
+            </ul>
+        </section>
+
+        
+
+         <section>
+          <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+                <person xml:id="DB">
+                    <persName notAfter="1966">David Jones</persName>
+                    <persName notBefore="1966">David Bowie</persName>
+                </person>
+            </script>
+          </code>
+        </pre>
+        </section>
+
+               <section>
+            <h3>People: Events</h3>
+            <ul class="fragment r-fit-text">
+                <li>birth (birth) contains information about a person's birth, such as its date and place.</li>
+                <li>death (death) contains information about a person's death, such as its date and place.</li>
+                <li>event (event) </li>
+            </ul>
+        </section>
 
 
+    <section>
+        <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+                <person xml:id="DB">
+                    <persName>Winnifred Eaton</persName>
+                    <birth when="1875"/>
+                    <residence to="1895">Montreal</residence>
+                    <residence notBefore="1895" notAfter="1897">Jamaica</residence>
+                    <residence from="1901" to="1917">New York</residence>
+                    <residence from="1917" to="1925">Calgary</residence>
+                </person>
+            </script>
+          </code>   
+        </section>
 
-      <section>
-        <h2>Next Sessions</h2>
+
+        <section>
+            <h3>People: States</h3>
+            <ul class="fragment r-fit-text">
+<li>affiliation (affiliation) contains an informal description of a person's present or past affiliation with some organization, for example an employer or sponsor.</li>
+<li>age (age) specifies the age of a person.</li>
+<li>education (education) contains a description of the educational experience of a person.</li>
+<li>faith (faith) specifies the faith, religion, or belief set of a person.</li>
+<li>floruit (floruit) contains information about a person's period of activity.</li>
+<li>gender (gender) specifies the gender identity of a person, persona, or character.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>People: States</h3>
+            <ul class="fragment  r-fit-text">
+                <li>langKnowledge (language knowledge) summarizes the state of a person's linguistic knowledge, either as prose or by a list of langKnown elements.</li>
+<li>nationality (nationality) contains an informal description of a person's present or past nationality or citizenship.</li>
+<li>occupation (occupation) contains an informal description of a person's trade, profession or occupation.</li>
+<li>persName (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc.</li>
+<li>persona provides information about one of the personalities identified for a given individual, where an individual has multiple personalities.</li>
+<li>persPronouns (personal pronouns) indicates the personal pronouns used, or assumed to be used, by the individual being described.</li>
+<li>residence (residence) describes a person's present or past places of residence.</li>
+<li>sex (sex) specifies the sex of an organism.</li>
+<li>socecStatus (socio-economic status) contains an informal description of a person's perceived social or economic status.</li>
+            </ul>
+        </section>
+
+ 
+
+        <section>
+            <pre>
+                   <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+<person>
+    <residence notAfter="1997">Mbeni estate, Dzukumura region, Matabele land</residence>
+    <residence notBefore="1903" notAfter="1996">
+        <placeName>
+            <settlement>Glasgow</settlement>
+            <region>Scotland</region>
+        </placeName>
+    </residence>
+</person>
+</script>
+</code>
+            </pre>
+        </section>
+
+       
+ 
+
+    <section>
+          <pre>
+            <code class="language-xml" data-line-numbers data-trim><script type="text/template">
+<person>
+ <persName>
+  <forename>Miss Major</forename>
+  <surname>Griffin-Gracy</surname>
+ </persName>
+ <birth when="1940-10-25"/>
+ <gender value="transWoman"
+  evidence="selfIdentification">trans woman</gender>
+ <persPronouns value="she"
+  evidence="selfIdentification"/>
+ <note>
+  <p>Veteran of the Stonewall Riots. Founder of the
+     Griffin-Gracy Educational Retreat and Historical
+     Center (the House of GG). Activist and advocate for
+     transgender and gender-nonconforming people of
+     color.</p>
+ </note>
+</person>
+    </script>
+            </code>
+        </pre>
+        </section>
+        
+
+
+        <section>
+            <h3>People: Personae</h3>
+            <ul>
+                <li>People can also have individual personae, which function as embedded person elements</li>
+            </ul>
+        </section>
+
+        <section>
+          <pre>
+            <code class="language-xml" data-line-numbers data-trim><script type="text/template">
+                <person sex="M" age="adult">
+                    <persona sex="M">
+                        <persName>Dr Henry Jekyll</persName>
+                    </persona>
+                    <persona sex="M" age="youth">
+                        <persName>Edward Hyde</persName>
+                    </persona>
+                </person>
+                    </script>
+            </code>
+        </pre>
+    </section>
+
+    <section>
+        <pre>
+          <code class="language-xml" data-line-numbers data-trim>
+            <script type="text/template">
+                <person xml:id="DB">
+                    <persName>Winnifred Eaton</persName>
+                    <persona>
+                        <persName>Onoto Watanna</persName>
+                        <nationality>Japanese</nationality>
+                        <floruit from="1897" notAfter="1930"/>
+                    </persona>
+                    <birth when="1875"/>
+                    <residence to="1895">Montreal</residence>
+                    <residence notBefore="1895" notAfter="1897">Jamaica</residence>
+                    <residence from="1901" to="1917">New York</residence>
+                    <residence from="1917" to="1925">Calgary</residence>
+                </person>
+            </script>
+          </code>   
+        </section>
+
+
+    <section>
+        <h3>Activity! Encoding People</h3>
         <ul class="fragmented">
-            <li>August 11 (UBC): Language, Speech, and Thought</li>
+            <li>Go to workshop page: <a href="https://disa-dhil.github.io/tei-summer-sessions/">https://disa-dhil.github.io/tei-summer-sessions/</a></li>
+            <li>Go to the editor link</li>
         </ul>
-      </section>
+    </section>
 
-<!-- 
+    <section>
+        <h3>Activity!</h3>
+        <ul class="fragmented">
+            <li>Create a personography record for E. Pauline Johnson</li>
+            <li>Consider events like birth, death, affiliation, residence, names, personae</li>
+            <li>Use the TEI Guidelines to help guide your encoding: <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-person.html">https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-person.html</a>
+            </li>
+        </ul>
+    </section>
+
+    <section data-background-image="../assets/images/epj.png">
+        <div>
+            <p>
+          <a href="https://thepeopleandthetext.ca/featured-authors/EPaulineJohnson">https://thepeopleandthetext.ca/featured-authors/EPaulineJohnson</a>
+            </p>
+        </div>
+       
+    </section>
+
+<section>
+        <h3>Activity!</h3>
+        <ul>
+            <li>Create a personography record for E. Pauline Johnson</li>
+            <li>Consider events like birth, death, affiliation, residence, names, personae</li>
+            <li>Use the TEI Guidelines to help guide your encoding: <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-person.html">https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-person.html</a>
+            </li>
+            <li><a href="https://thepeopleandthetext.ca/featured-authors/EPaulineJohnson">https://thepeopleandthetext.ca/featured-authors/EPaulineJohnson</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Discussion</h3>
+    </section>
+
+
+
+        <section>
+            <h3>Places</h3>
+            <ul>
+                <li>Places are very similar to people, but far fewer elements</li>
+                <li>But conceptually challenging: many changeable and contested states (or traits)</li>
+                <li>And can nest</li>
+            </ul>
+        </section>
+
+        <section>
+              <pre>
+<code class="language-xml" data-line-numbers data-trim>
+ <script type="text/template">
+  <place xml:id="li">
+   <country>Lithuania</country>
+   <country xml:lang="lt">Lietuva</country>
+   <place xml:id="vi">
+    <settlement>Vilnius</settlement>
+   </place>
+   <place xml:id="ka">
+    <settlement>Kaunas</settlement>
+   </place>
+  </place>
+ </script>
+</code>
+</pre>
+        </section>
+        
+        <section>
+            <h3>Places</h3>
+            <ul class="fragmented">
+                <li>How to represent nested nature of place? </li>
+                <li>Countries: Top level or nested?</li>
+            </ul>
+        </section>
+
+        <section>
+              <pre>
+<code class="language-xml" data-line-numbers data-trim>
+ <script type="text/template">
+  <place ref="#vi">
+    <placeName>Vilnius</placeName>
+    <country ref="#li"/>
+   </place>
+   <place xml:id="ka">
+    <placeName>Kaunas</placeName>
+    <country ref="#li"/>
+   </place>
+  <place xml:id="li">
+   <country>Lithuania</country>
+   <country xml:lang="lt">Lietuva</country>
+   <settlement ref="#vi"/>
+   <settlement ref="#ka"/>
+  </place>
+ </script>
+</code>
+</pre>
+        </section>
+
+        <section>
+            <h3>Activity: Geolocating using Vertexer</h3>
+            <ul class="fragmented">
+                <li>Vertexer: A tool developed by UVic's HCMC to map coordinates and embed in TEI files</li>
+                <li><a href="https://hcmc.uvic.ca/people/greg/vertexer/">https://hcmc.uvic.ca/people/greg/vertexer/</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Discussion</h3>
+        </section>
+
+        <section>
+            <h3>Lunch</h3>
+        </section>
+
+        <section>
+            <h3>Case Study</h3>
+        </section>
+
+        <section>
+          <h2>Next Sessions</h2>
+          <ul class="fragmented">
+            <li>August 11 (UBC): Language, Speech, and Thought</li>
+          </ul>
+        </section>
+
+        <!-- 
 
         <section>
             <h3>TEI</h3>
@@ -134,10 +658,7 @@
             
         </section> -->
 
-        
-  
-        
-<!--         
+        <!--         
         <section>
                 <img class="r-stretch" src="../assets/images/tweet.png">
                 <cite>@ShitPlanning</cite>
@@ -194,11 +715,11 @@
             </div>
         </section> -->
         <!--Not available-->
-<!--         
+        <!--         
         <section data-background-iframe="//localhost:3000/leafwriter/dist/">
         </section> -->
-      
-<!-- 
+
+        <!-- 
         <section>
             <h3>My stuff is encoded...what can I do with it?</h3>
         </section>
@@ -240,7 +761,6 @@
             <p>TEI GitHub: <a href="https://github.com/TEIC/TEI">https://github.com/TEIC/TEI</a></p>
             <p>TEI listServ: <a href="https://listserv.brown.edu/cgi-bin/wa?A0=TEI-L">https://listserv.brown.edu/cgi-bin/wa?A0=TEI-L</a></p>
         </section> -->
-        
 
         <!-- <section data-auto-animate>
             <pre data-id="closer"><code data-line-numbers data-trim>
@@ -277,15 +797,14 @@
                 </code>
             </pre>
         </section> -->
-                    <!--    <listBibl type="references">
+        <!--    <listBibl type="references">
                             <bibl>Landscapes of Injustice Archive</bibl>
                             <bibl>The Yellow Nineties 2.0</bibl>
                             <bibl>The Winnifred Eaton Archive</bibl>
                             <bibl></bibl>
                         </listBibl>-->
 
-
-          <!--  
+        <!--  
       <section data-auto-animate>
             <h3>The TEI</h3>
             <p class="fragment">A set of shared, community-developed guidelines for encoding text</p>
@@ -578,8 +1097,7 @@ so wretched
             <li>See also the <a href="https://whitmanarchive.org/">Walt Whitman Archive</a></li>
         </ul>
       </section> -->
+      </div>
     </div>
-</div>
-    
-</body>
+  </body>
 </html>

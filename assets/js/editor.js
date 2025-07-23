@@ -240,14 +240,26 @@ function autosavePlugin(storageKey) {
 
 const peopleTemplate = `
 <listPerson>
-    <person>
-       <persName>
-           <forename></forename>
-           <surname></surname>
-       </persName>
-       <birth></birth>
-       <death></death>
-    </person>
+<person xml:id="pjohnson" xml:lang="en">
+  <persName>
+  </persName>
+
+  <birth></birth>
+  <death></death>
+
+  <!-- Add relevant occupations -->
+  <occupation></occupation>
+  <occupation></occupation>
+
+  <!-- Add affiliations, e.g. to Mohawk nation, literary scenes -->
+  <affiliation></affiliation>
+
+  <!-- Add external authority reference -->
+  <idno type="viaf"></idno>
+
+  <!-- Add a note about her identity, performance, and legacy -->
+  <note></note>
+</person>
   </listPerson>`;
 
 const placesTemplate = `
