@@ -255,7 +255,9 @@ const peopleTemplate = `
   <affiliation></affiliation>
 
   <!-- Add external authority reference -->
-  <idno type="viaf"></idno>
+  <linkGrp>
+    <ptr target="https://thepeopleandthetext.ca/featured-authors/EPaulineJohnson"/>
+  </linkGrp>
 
   <!-- Add a note about her identity, performance, and legacy -->
   <note></note>
