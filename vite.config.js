@@ -43,6 +43,8 @@ input["2025-06-26_annotate"] = resolve(
   "annotate.html"
 );
 
+input["2025-07-23_editor"] = resolve(__dirname, "2025-07-23", "editor.html");
+
 export default defineConfig({
   plugins: [
     replaceTemplateString({
