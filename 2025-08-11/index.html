@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>TEI Summer Sessions</title>
+    <meta charset="utf-8" />
+    <link href="../assets/css/presentation.css" rel="stylesheet" />
+    <script src="../assets/js/presentation.js" type="module"></script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          class="title-slide slide"
+          data-background-image="../assets/images/TEI_Summer_Sessions.png"
+          data-background-size="contain"
+        >
+          <div>
+            <h2 class="maintitle">Encoding Language and the Language of XML</h2>
+            <p  style="text-align: center; font-size: 70%"><a href="https://disa-dhil.github.io/tei-summer-sessions/">https://disa-dhil.github.io/tei-summer-sessions/</a></p>
+            <p style="text-align: center; font-size: 70%">Joey Takeda</p>
+            <p style="text-align: center; font-size: 70%">
+              Digital Humanities Innovation Lab, SFU | Digital Scholarship in
+              the Arts (DiSA), UBC
+            </p>
+            <p style="text-align: center; font-size: 70%">August 11, 2025</p>
+          </div>
+        </section>
+
+        <section>
+          <h3>Today</h3>
+          <ol>
+            <li>10:00-12:00: Presentation and Workshop</li>
+            <li>12:00-12:30: Lunch</li>
+            <li>12:30-2:00: Debrief &amp; Co-working</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Before we begin...</h3>
+          <ul class="fragmented">
+            <li>This is not going to be an introduction to TEI</li>
+            <li>But completely OK if you aren't familiar!</li>
+            <li>But also: please feel free to interrupt, ask questions, etc</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Today</h3>
+          <ol class="fragmented">
+            <li>Brief History of Unicode</li>
+            <li><kbd>@xml:lang</kbd></li>
+            <li>Encoding Foreign Language and Parallel Transcription</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Character Encoding</h3>
+          <ul class="fragmented">
+            <li>1960s–1980s: Many different character sets (ASCII, ISO-8859, Shift-JIS…)</li>
+            <li>Limited support for languages beyond English (256 characters)</li>
+            <li>Encoding mismatches caused "mojibake": ���</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Unicode (1991)</h3>
+          <ul class="fragmented">
+            <li>Universal character set for all writing systems (aka UTF-8)</li>
+            <li>Each character = a unique number (a code point)</li>
+            <li>Written as <kbd>U+</kbd> + hexadecimal (e.g., <kbd>U+0041</kbd> = <kbd>A</kbd>)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Examples</h3>
+          <ul>
+            <li>A — U+0041</li>
+            <li>é — U+00E9</li>
+            <li>🙂 — U+1F642</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Glyphs and Characters</h3>
+          <ul class="fragmented">
+            <li>Unicode also provides sets of "combining characters": characters that are meant to modify another character and not stand on its own</li>
+            <li>Accents and other diacritical marks are usually "precomposed" with characters</li>
+            <li>E.g. é — U+00E9</li>
+            <li>But could also be decomposed</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Example</h3>
+          <table class="bordered r-fit-text">
+            <tbody>
+              <tr>
+                <th>NFC character
+                </th>
+                <td>A</td>
+                <td>m</td>
+                <td colspan="2">é</td>
+                <td>l</td>
+                <td>i</td>
+                <td>e
+                </td>
+              </tr>
+              <tr>
+                <th>Composed code point
+                </th>
+                <td>0041</td>
+                <td>006d</td>
+                <td colspan="2">00e9</td>
+                <td>006c</td>
+                <td>0069</td>
+                <td>0065
+                </td>
+              </tr>
+              <tr>
+                <th>Decomposed code point
+                </th>
+                <td>0041</td>
+                <td>006d</td>
+                <td>0065</td>
+                <td>0301</td>
+                <td>006c</td>
+                <td>0069</td>
+                <td>0065
+                </td>
+              </tr>
+              <tr>
+                <th>Character
+                </th>
+                <td>A</td>
+                <td>m</td>
+                <td>e</td>
+                <td>◌́</td>
+                <td>l</td>
+                <td>i</td>
+                <td>e
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Emoji Combinations: Skin Tone (Fitzpatrick Scale)</h2>
+          <table class="bordered r-fit-text">
+            <tbody>
+              <thead>
+                <tr>
+                  <th>Base Emoji</th>
+                  <th>U+1F3FB (Light)</th>
+                  <th>U+1F3FC (Medium-Light)</th>
+                  <th>U+1F3FD (Medium)</th>
+                  <th>U+1F3FE (Medium-Dark)</th>
+                  <th>U+1F3FF (Dark)</th>
+                </tr>
+              </thead>
+              <tr>
+                <th>👍</th>
+                <th>👍🏻</td>
+                <td>👍🏼</td>
+                <td>👍🏽</td>
+                <td>👍🏾</td>
+                <td>👍🏿</td>
+              </tr>
+              <tr>
+                <th>🧑</th>
+                <td>🧑🏻</td>
+                <td>🧑🏼</td>
+                <td>🧑🏽</td>
+                <td>🧑🏾</td>
+                <td>🧑🏿</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Other Emoji Combinations</h2>
+          <table class="bordered r-fit-text">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Emojis</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Occupation (Person + medical symbol)</td>
+                <td>🧑 + ⚕</td>
+                <td>🧑‍⚕</td>
+              </tr>
+              <tr>
+                <td>Family (Person + person + baby)</td>
+                <td>👩 + 👩 + 👧</td>
+                <td>👩‍👩‍👧</td>
+              </tr>
+              <tr>
+                <td>Objects (Flag + rainbow)</td>
+                <td>🏳 + 🌈</td>
+                <td>🏳️‍🌈</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Unicode Support</h3>
+          <ul class="fragmented">
+            <li>All of these are <em>font specific</em>, not Unicode</li>
+            <li>292,531 assigned characters with code points</li>
+            <li>Not all fonts support all character ranges</li>
+            <li>Character can exist in Unicode, but not in a font</li>
+            <li>This creates "tofu": 􏿮</li>
+            <li>Google's Noto family ("no tofu") of fonts meant to resolve this problem</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Summary</h3>
+          <ul class="fragmented">
+            <li>Everything is in UTF-8</li>
+            <li>Every glyph corresponds to a code point</li>
+            <li>Code points can combine to make characters</li>
+            <li>Most rendering issues are a font issue, not a character encoding one (but that's always useful to check)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+        <section>
+          <h2>@xml:lang and Language Encoding in TEI</h2>
+          <ul class="fragmented">
+            <li>In TEI (and all XML), the <kbd>@xml:lang</kbd> allows encoders to indicate the language of the content in any element</li>
+            <li>This is usually declared on the root element (e.g. <kbd>TEI</kbd>) and is inherited</li>
+          </ul>
+          <!--<ul>
+            <li><strong>Purpose of @xml:lang</strong>: Indicates the language of the content in an element.</li>
+            <li><strong>Based on IANA language tags</strong>: 
+            </li>
+            <li><strong>Basic Structure</strong>: primary language subtag (e.g. <code>en</code>), optional script subtag (e.g.
+              <code>Latn</code>), region subtag (e.g. <code>CA</code>).
+            </li>
+          </ul>-->
+        </section>
+        <section>
+<pre>
+<code class="language-xml" data-fragment-index="1" data-trim data-line-numbers="1-9|1|5|6-8|9|19-24|25-34" >
+<script type="text/template">
+  <TEI xml:lang="en">
+    <teiHeader>
+      <fileDesc>
+        <titleStmt>
+          <title>Selections from <title>The Flowers of Evil</title></title>
+          <title xml:lang="fr">Extraits des <title>Les Fleurs
+             du Mal</title>
+          </title>
+          <title>Selections from <title xml:lang="fr">Les Fleurs du Mal</title></title>
+        </titleStmt>
+        <sourceDesc>
+          <bibl>Charles Baudelaire, <title>The Flowers of Evil</bibl>. Translated by James McGowan. Oxford UP, 1993</bibl>
+        </sourceDesc>
+      </fileDesc>
+    </teiHeader>
+    <!--[...]-->
+    <text>
+      <front>
+        <div>
+          <head>Translator's Preface</head>
+          <p>...</p>
+        </div>
+      </front>
+      <body>
+         <div xml:lang="fr">
+            <head>Au lecteur</head>
+            <lg>
+              <l>La sottise, l'erreur, le péché, la lésine,</l>
+              <l>Occupent nos esprits et travaillent nos corps,</l>
+              <!--....-->
+            </lg>
+         </div>
+      </body>
+    </text>
+  </TEI>
+</script>
+</code>
+</pre>
+<div class="r-stack fragment" data-fragment-index="1">
+      <p class="fragment fade-out" data-fragment-index="2">The root <kbd>TEI</kbd> element has an <kbd>@xml:lang="en"</kbd></p>
+      <p class="fragment fade-out current-visible" data-fragment-index="2">We don't need an <kbd>@xml:lang</kbd> on the first title, since it is in English by default</p>
+      <p class="fragment fade-out current-visible " data-fragment-index="3">But we do need to say that the second title is in French</p>
+      <p class="fragment fade-out current-visible" data-fragment-index="4">And these can nest</p>
+      <p class="fragment fade-out current-visible" data-fragment-index="5">The content of the text will be declared to be in English (because of the root <kbd>@xml:lang</kbd>)</p>
+      <p class="fragment fade-out current-visible" data-fragment-index="6">But individual segments (or the whole body itself) could have a new <kbd>@xml:lang</kbd> value</p>
+  </div>
+</section>
+
+<section>
+  <h2>Language tags</h2>
+  <ul class="fragmented">
+    <li>Uses standardized tags from the IANA Language Subtag Registry</li>
+    <li>Basic Structure: primary language subtag (e.g. <code>en</code>), optional script subtag (e.g.<code>Latn</code>), region subtag (e.g. <code>CA</code>)</li>
+  </ul>
+</section>
+
+<section>
+          <h2>IANA Language Tag Examples</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Language Tag</th>
+                <th>Language</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>en</code></td>
+                <td>English</td>
+              </tr>
+              <tr>
+                <td><code>en-CA</code></td>
+                <td>Canadian English</td>
+              </tr>
+              <tr>
+                <td><code>es</code></td>
+                <td>Spanish</td>
+              </tr>
+              <tr>
+                <td><code>ru</code></td>
+                <td>Russian</td>
+              </tr>
+              <tr>
+                <td><code>de</code></td>
+                <td>German</td>
+              </tr>
+              <tr>
+                <td><code>zh</code></td>
+                <td>Chinese</td>
+              </tr>
+              <tr>
+                <td><code>ja-Latn</code></td>
+                <td>Japanese in Latin script (romanji)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+<section>
+  <h2>Code switching</h2>
+  <ul class="fragmented">
+    <li><kbd>@xml:lang</kbd> is allowed everywhere, but in many cases, it is desired to mark up linguistically distinct phrases specifically</li>
+    <li>The TEI provides two elements for this purpose: <kbd>&lt;foreign&gt;</kbd> and <kbd>&lt;distinct&gt;</kbd></li>
+  </ul>
+</section>
+
+<section>
+<pre>
+<code class="language-xml" data-trim >
+<script type="text/template">
+  <p>John eats a <foreign xml:lang="fr">croissant</foreign> every morning.</p>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+<pre>
+<code class="language-xml" data-trim >
+<script type="text/template">
+<u who="prs:seki43"> So when we went to Japan, 
+we were on the fortunate side, for the repats,
+you know? <foreign xml:lang="ja">おかげさまでね</foreign> 
+<incident><desc>Long pause.</desc></incident> 
+And my father was told what is
+needed <incident><desc>Tatsuo
+   hums in agreement</desc></incident>
+at that time, so he bought-</u>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+  <h2>Exercise</h2>
+  <p>Use the IANA Subtag Registry Lookup Tool: <a href="https://r12a.github.io/app-subtags/">https://r12a.github.io/app-subtags/</a> to find the language codes for:  </p>
+  <ul>
+    <li>Portuguese</li>
+    <li>Gaelic</li>
+    <li>Russian</li>
+    <li>Irish</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Open Question: Dialect?</h2>
+<pre>
+<code class="language-xml" data-trim>
+<script type="text/template">
+  <p><said><emph>Pauvre enfant</emph>! Me?
+    I know eet is hard for you! I have ze pity for you;
+    but dat will not put ze food in ze stomach!
+    <emph>Non</emph>! Soon you will see!</said></p>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+  <h2>Summary</h2>
+  <ul class="fragmented">
+    <li>Every element can bear the <kbd>xml:lang</kbd> attribute</li>
+    <li><kbd>@xml:id</kbd> is inherited</li>
+    <li>Best practice: put an <kbd>xml:lang</kbd> on the root TEI element</li>
+    <li><kbd>&lt;foreign&gt;</kbd> is useful for some cases, but not necessary if there's a better container (unless there's a good reason for it)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Parallel Texts and Translations</h2>
+  <ul class="fragmented">
+    <li>Aligning parallel texts can be tricky in TEI</li>
+    <li>Requires making links between the "main" text and translations</li>
+  </ul>
+</section>
+
+
+          <section>
+            <p>Option 1: Embedded Note</p>
+<pre>
+<code class="language-xml" data-fragment-index="1" data-line-numbers="|11-13">
+<script type="text/template">
+<text>
+  <body>
+    <div>
+      <head xml:lang="ga">Donncha Rua i dTalamh an Éisc</head>
+      <byline>
+        <docAuthor ref="viaf:294881339">Donncha Rua Mac Conmara</docAuthor>
+      </byline>
+      <lg>
+        <l>As I was walking one evening fair,</l>
+        <l xml:lang="ga">Agus mé go déanach a mBaile Sheáin;
+          <note type="editorial" subtype="translation">And I lately in St. John's town</note>
+        </l>
+        <l>I met a gang of English blades,</l>
+        <l xml:lang="ga">Agus iad á dtraochadh ag neart a namhad;
+          <note type="editorial" subtype="translation">Who had been cowed by opponent's might;</note>
+        </l>
+      </lg>
+    </div>
+  </body>
+</text>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+    <p>Option 2: Structural, implicit</p>
+<pre>
+<code class="language-xml" data-fragment-index="1" data-line-numbers="|9-16|16-24">
+<script type="text/template">
+<text>
+  <body>
+    <div>
+      <head xml:lang="ga">Donncha Rua i dTalamh an Éisc</head>
+      <byline>
+        <docAuthor ref="viaf:294881339">Donncha Rua Mac Conmara</docAuthor>
+      </byline>
+      <div type="original">
+        <lg>
+          <l>As I was walking one evening fair,</l>
+          <l xml:lang="ga">Agus mé go déanach a mBaile Sheáin;</l>
+          <l>I met a gang of English blades,</l>
+          <l xml:lang="ga" >Agus iad á dtraochadh ag neart a namhad;</l>
+        </lg>
+      </div>
+      <div type="translation" resp="#JT1">
+        <lg>
+          <l>As I was walking one evening fair,</l>
+          <l>And I lately in St. John's town</l>
+          <l>I met a gang of English blades;</l>
+          <l>Who had been cowed by opponent's might</l>
+        </lg>
+      </div>
+    </div>
+  </body>
+</text>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+      <p>Option 3: Structural, aligned</p>
+<pre>
+<code class="language-xml" data-fragment-index="1" data-line-numbers="|9-16|12,14|19-22">
+<script type="text/template">
+<text>
+  <body>
+    <div>
+      <head xml:lang="ga">Donncha Rua i dTalamh an Éisc</head>
+      <byline>
+        <docAuthor ref="viaf:294881339">Donncha Rua Mac Conmara</docAuthor>
+      </byline>
+      <div type="original">
+        <lg>
+          <l xml:id="L1">As I was walking one evening fair,</l>
+          <l xml:lang="ga" xml:id="L2">Agus mé go déanach a mBaile Sheáin;</l>
+          <l xml:id="L3">I met a gang of English blades,</l>
+          <l xml:lang="ga" xml:id="L4">Agus iad á dtraochadh ag neart a namhad;</l>
+        </lg>
+      </div>
+      <div type="translation" resp="#JT1">
+        <lg>
+          <l copyOf="#L1"/>
+          <l corresp="#L2">And I lately in St. John's town</l>
+          <l copyOf="#L3"/>
+          <l corresp="#L4">Who had been cowed by opponent's might</l>
+        </lg>
+      </div>
+    </div>
+  </body>
+</text>
+  </TEI>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+  <p>Option 4: Link Groups</p>
+<pre>
+<code class="language-xml" data-fragment-index="1" data-line-numbers="|9-16|16-22|26-31|27-30">
+<script type="text/template">
+<text>
+  <body>
+    <div>
+      <head xml:lang="ga">Donncha Rua i dTalamh an Éisc</head>
+      <byline>
+        <docAuthor ref="viaf:294881339">Donncha Rua Mac Conmara</docAuthor>
+      </byline>
+      <div type="original" xml:id="orig">
+        <lg>
+          <l xml:id="orig_L1">As I was walking one evening fair,</l>
+          <l xml:lang="ga" xml:id="orig_L2">Agus mé go déanach a mBaile Sheáin;</l>
+          <l xml:id="orig_L3">I met a gang of English blades,</l>
+          <l xml:lang="ga" xml:id="orig_L4">Agus iad á dtraochadh ag neart a namhad;</l>
+        </lg>
+      </div>
+      <div type="translation" resp="#JT1" xml:id="tr">
+        <lg>
+          <l xml:id="tr_L2">And I lately in St. John's town</l>
+          <l xml:id="tr_L4">Who had been cowed by opponent's might</l>
+        </lg>
+      </div>
+    </div>
+  </body>
+</text>
+<standOff>
+  <linkGrp domains="#orig #tr" targFunc="translation">
+    <link target="#orig_L2 #tr_L2"/>
+    <link target="#orig_L4 #tr_L4"/>
+  </linkGrp>
+</standOff>
+</script>
+</code>
+</pre>
+</section>
+
+<section>
+  <h2>Questions?</h2>
+</section>
+
+<section>
+  <h2>Lunch</h2>
+</section>
+
+
+
+
+
+
+
+
+<!-- <section>
+<pre>
+<code class="language-xml" data-line-numbers data-trim>
+ <script type="text/template">
+  <place ref="#vi">
+    <placeName>Vilnius</placeName>
+    <country ref="#li"/>
+   </place>
+   <place xml:id="ka">
+    <placeName>Kaunas</placeName>
+    <country ref="#li"/>
+   </place>
+  <place xml:id="li">
+   <country>Lithuania</country>
+   <country xml:lang="lt">Lietuva</country>
+   <settlement ref="#vi"/>
+   <settlement ref="#ka"/>
+  </place>
+ </script>
+</code>
+</pre>
+        </section> -->
+
+      </div>
+    </div>
+  </body>
+</html>

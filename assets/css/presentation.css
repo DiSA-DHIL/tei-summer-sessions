@@ -141,6 +141,15 @@ p {
   animation-timing-function: ease-in-out;
 }
 
+table.bordered {
+  table-layout: fixed;
+  tr,
+  td,
+  th {
+    border: 1px solid #efefef;
+  }
+}
+
 @keyframes italic {
   0% {
     transform: skewX(0);

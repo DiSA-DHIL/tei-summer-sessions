@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>TEI Workshop: Editor</title>
+    <link href="../assets/css/editor.css" rel="stylesheet" />
+    <link href="../../node_modules/leaflet/leaflet.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="top-bar">
+    <input type="radio" id="people" name="editor" value="People" checked />
+    <label for="people">People</label>
+    <input type="radio" id="places" name="editor" value="places" />
+    <label for="places">Places</label>
+    <button id="render-preview">Render Preview</button>
+    </div>
+
+    <div id="editor-container">
+      <div id="people-editor" class="editor"></div>
+      <div id="places-editor" class="editor"></div>
+      <div id="preview-panel"><em>Preview will appear here.</em></div>
+    </div>
+    <button id="reset">Reset content</button>
+    <script src="../assets/js/editor.js" type="module"></script>
+  </body>
+</html>

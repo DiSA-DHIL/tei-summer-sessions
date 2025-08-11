@@ -44,6 +44,7 @@ input["2025-06-26_annotate"] = resolve(
 );
 
 input["2025-07-23_editor"] = resolve(__dirname, "2025-07-23", "editor.html");
+input["2025-08-11_editor"] = resolve(__dirname, "2025-08-11", "editor.html");
 
 export default defineConfig({
   plugins: [
